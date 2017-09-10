@@ -7,7 +7,19 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/p01/')
-def p01():
-    return render_template('p01.html')
+@app.route('/datasets/')
+def datasets():
+    return render_template('datasets.html')
 
+
+@app.route('/contact/')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/features/')
+def features():
+    return render_template('features.html')
+
+@app.route('/help/')
+def help():
+    return render_template('help.html')
