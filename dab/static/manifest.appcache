@@ -6,7 +6,7 @@ CACHE MANIFEST
 
 # offline.html will be displayed if the user is offline
 FALLBACK:
-/ /offline.html
+/static/offline.html
 
 # All other resources (e.g. sites) require the user to be online.
 NETWORK:

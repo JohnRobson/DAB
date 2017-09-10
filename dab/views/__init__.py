@@ -1,25 +1,18 @@
-from flask import render_template, make_response # session, g  # request, redirect, url_for
-from dab import app
+from flask import Blueprint, render_template
+
+static = Blueprint('static', __name__)
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/datasets/')
-def datasets():
-    return render_template('datasets.html')
-
-
-@app.route('/contact/')
+@static.route('/contact/', methods=['GET', 'POST'])
 def contact():
     return render_template('contact.html')
 
-@app.route('/features/')
+
+@static.route('/features/', methods=['GET', 'POST'])
 def features():
     return render_template('features.html')
 
-@app.route('/help/')
+
+@static.route('/help/', methods=['GET', 'POST'])
 def help():
     return render_template('help.html')

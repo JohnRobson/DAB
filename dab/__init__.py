@@ -4,10 +4,15 @@ __project__ = 'dab'
 __version__ = '0.1.dev1'
 
 
-from flask import Flask # render_template, make_response, session, g  # request, redirect, url_for
+from flask import Flask # Blueprint, render_template, make_response, session, g  # request, redirect, url_for
 from flask_wtf import CSRFProtect
 # from functools import wraps, update_wrapper
 
+from .views.index import index
+from .views import static
+from .views.datasets import datasets
+# import dab.views.decorators
+# from tests.view_decorator import *
 
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
@@ -16,10 +21,12 @@ app.debug = True
 csrf = CSRFProtect()
 csrf.init_app(app)
 
-import dab.util.requests
-import dab.views
-# import dab.views.decorators
-# from tests.view_decorator import *
+################################## Pages ##################################
+
+app.register_blueprint(index)
+app.register_blueprint(static)
+app.register_blueprint(datasets)
+# from .util import requests # import dab.util.requests
 
 ################################################################################
 
@@ -34,6 +41,6 @@ import dab.views
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5050)
+	app.run(debug=True, host='0.0.0.0', port=5050)
 
 # $ python main.py
