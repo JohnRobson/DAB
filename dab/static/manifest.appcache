@@ -1,0 +1,16 @@
+CACHE MANIFEST
+# 2010-06-18:v3
+
+# Explicitly cached entries
+/static/favicon.ico
+
+# offline.html will be displayed if the user is offline
+FALLBACK:
+/ /offline.html
+
+# All other resources (e.g. sites) require the user to be online.
+NETWORK:
+*
+
+# Additional resources to cache
+CACHE:

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" manifest="{{ url_for('static', filename='manifest.appcache') }}">
+	<head>
+		<title>DAB - Data Analysis Bot</title>
+		<meta http-equiv="Cache-Control" content="public, no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+		<!-- <script src="https://unpkg.com/vue/dist/vue.min.js"></script> -->
+		<script type=text/javascript src="{{ url_for('static', filename='js/vue.js') }}"></script>
+		<script type=text/javascript src="{{ url_for('static', filename='js/vuex.js') }}"></script>
+		<script type=text/javascript src="{{ url_for('static', filename='js/main.js') }}"></script>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<h1 class="logo">DAB - Data Analysis Bot</h1>
+				<strong><nav>
+					<ul class="menu">
+						<li><a href="{{ url_for('index') }}">Home</a></li>
+						<li><a href="{{ url_for('p01') }}">Features</a></li>
+					</ul>
+				</nav></strong>
+			</div>
+		</header>
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<footer>
+		</footer>
+	</body>
+</html>
