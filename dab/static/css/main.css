@@ -45,7 +45,7 @@ header .logo:hover {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 1.75em;
 }
 
 h2 {
@@ -53,7 +53,7 @@ h2 {
 }
 
 h3 {
-	font-size: 1.3em;
+	font-size: 1.25em;
 	font-weight: 100;
 	margin-bottom: -2px;
 	letter-spacing: -1px;
@@ -76,4 +76,22 @@ h3 {
 .menu li a {
 	color: #444;
 	text-decoration: none;
+}
+
+/* Links */
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
 }

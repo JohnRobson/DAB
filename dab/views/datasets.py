@@ -3,9 +3,8 @@ from os.path import isfile, join
 
 from flask import Blueprint, render_template
 
-db_dir = 'db'
-
 datasets = Blueprint('datasets', __name__)
+db_dir = 'db'
 
 
 @datasets.route('/datasets/', methods=['GET', 'POST'])

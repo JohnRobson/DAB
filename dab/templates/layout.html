@@ -16,14 +16,14 @@
 	<body>
 		<header>
 			<div class="container">
-				<h1 class="logo">DAB - Data Analysis Bot</h1>
+				<h1 class="logo"><a href="{{ url_for('index.main') }}">DAB - Data Analysis Bot</a></h1>
 				<strong><nav>
 					<ul class="menu">
-						<li><a href="{{ url_for('index.main') }}">Bot</a></li>
+						<li><a href="{{ url_for('bot.main') }}">Bot</a></li>
 						<li><a href="{{ url_for('datasets.main') }}">DataSets</a></li>
-                        <li><a href="{{ url_for('static.contact') }}">Contact</a></li>
-                        <li><a href="{{ url_for('static.features') }}">Features</a></li>
-                        <li><a href="{{ url_for('static.help') }}">Help</a></li>
+						<li><a href="{{ url_for('static.contact') }}">Contact</a></li>
+						<li><a href="{{ url_for('static.features') }}">Features</a></li>
+						<li><a href="{{ url_for('static.help') }}">Help</a></li>
 					</ul>
 				</nav></strong>
 			</div>

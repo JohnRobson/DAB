@@ -8,9 +8,6 @@ from flask import Flask # Blueprint, render_template, make_response, session, g 
 from flask_wtf import CSRFProtect
 # from functools import wraps, update_wrapper
 
-from .views.index import index
-from .views import static
-from .views.datasets import datasets
 # import dab.views.decorators
 # from tests.view_decorator import *
 
@@ -23,8 +20,13 @@ csrf.init_app(app)
 
 ################################## Pages ##################################
 
-app.register_blueprint(index)
+from .views import static
 app.register_blueprint(static)
+from .views.index import index
+app.register_blueprint(index)
+from .views.bot import bot
+app.register_blueprint(bot)
+from .views.datasets import datasets
 app.register_blueprint(datasets)
 # from .util import requests # import dab.util.requests
 
