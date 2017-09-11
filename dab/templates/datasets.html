@@ -5,5 +5,11 @@
 
     <p>List of all datasets and descriptions.</p>
 
+    <ol>
+        {% for d in ds %}
+            <li>{{ d }}</li>
+        {% endfor %}
+    </ol>
+
 </div>
 {% endblock %}
