@@ -7,9 +7,9 @@ index = Blueprint('index', __name__)
 
 @index.route('/', methods=['GET', 'POST'])
 def main():
-    filename = 'advertising'
+    filename = 'Advertising'
 
-    df = pd.read_csv('/tmp/{}.csv'.format(filename))
+    df = pd.read_csv('db/{}.csv'.format(filename))
 
 
     return render_template('index.html', df=df)
