@@ -24,7 +24,6 @@ if __name__ == '__main__':
 	gc.collect()
 	run_server()
 
-
 '''
 server = Process(target=app.run)
 server.start()

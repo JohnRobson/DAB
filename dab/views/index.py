@@ -5,5 +5,4 @@ index = Blueprint('index', __name__)
 
 @index.route('/')
 def main():
-
-    return render_template('index.html')
+	return render_template('index.html')

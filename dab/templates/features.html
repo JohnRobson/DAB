@@ -1,63 +1,66 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="main">
-	<h1>Features</h1>
+	<div class="main">
+		<h1>Features</h1>
 
-    <p>Some available features.</p>
+		<p>Some available features.</p>
 
-	<div id="app-1">
-		<p>Msg: [[ message ]]</p>
-	</div>
+		<div id="app-1">
+			<p>Msg: [[ message ]]</p>
+		</div>
 
-	<div id="app-2">
+		<div id="app-2">
 		<span v-bind:title="message">
 		Hover your mouse over me for a few seconds to see my dynamically bound title!
 		</span>
-	</div>
+		</div>
 
-	<div id="app-3">
-		<p v-if="seen">Now you see me</p>
-	</div>
+		<div id="app-3">
+			<p v-if="seen">Now you see me</p>
+		</div>
 
-	<div id="app-4">
-		<ol>
-			<li v-for="todo in todos">
-				[[ todo.text ]]
-			</li>
-		</ol>
-	</div>
+		<div id="app-4">
+			<ol>
+				<li v-for="todo in todos">
+					[[ todo.text ]]
+				</li>
+			</ol>
+		</div>
 
-	<div id="app-5">
-		<p><button v-on:click="reverseMessage">Reverse Message</button> [[ message ]]</p>
-	</div>
+		<div id="app-5">
+			<p>
+				<button v-on:click="reverseMessage">Reverse Message</button>
+				[[ message ]]
+			</p>
+		</div>
 
-	<div id="app-6">
-		<p><input v-model="message"> [[ message ]]</p>
-	</div>
+		<div id="app-6">
+			<p><input v-model="message"> [[ message ]]</p>
+		</div>
 
-	<div id="app-7">
-		<ol>
-			<!--
-				Now we provide each todo-item with the todo object
-				it's representing, so that its content can be dynamic.
-				We also need to provide each component with a "key",
-				which will be explained later.
-			-->
-			<todo-item
-				v-for="item in groceryList"
-				v-bind:todo="item"
-				v-bind:key="item.id">
-			</todo-item>
-		</ol>
-	</div>
+		<div id="app-7">
+			<ol>
+				<!--
+                  Now we provide each todo-item with the todo object
+                  it's representing, so that its content can be dynamic.
+                  We also need to provide each component with a "key",
+                  which will be explained later.
+              -->
+				<todo-item
+						v-for="item in groceryList"
+						v-bind:todo="item"
+						v-bind:key="item.id">
+				</todo-item>
+			</ol>
+		</div>
 
-	<div id="app-8">
-		<form v-on:submit.prevent="onSubmit">
-		<input type="text" v-model="username" placeholder="Enter a github username here" />
-		<button type="submit">Go!</button>
-		</form>
-	</div>
+		<div id="app-8">
+			<form v-on:submit.prevent="onSubmit">
+				<input type="text" v-model="username" placeholder="Enter a github username here"/>
+				<button type="submit">Go!</button>
+			</form>
+		</div>
 
-</div>
-<script type=text/javascript src="{{ url_for('static', filename='vue/p01.vue') }}"></script>
+	</div>
+	<script type=text/javascript src="{{ url_for('static', filename='vue/p01.vue') }}"></script>
 {% endblock %}

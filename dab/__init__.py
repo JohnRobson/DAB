@@ -3,9 +3,9 @@
 __project__ = 'dab'
 __version__ = '0.1.dev1'
 
-
-from flask import Flask # Blueprint, render_template, make_response, session, g  # request, redirect, url_for
+from flask import Flask  # Blueprint, render_template, make_response, session, g  # request, redirect, url_for
 from flask_wtf import CSRFProtect
+
 # from functools import wraps, update_wrapper
 
 # import dab.views.decorators
@@ -21,12 +21,13 @@ csrf.init_app(app)
 ################################## Pages ##################################
 
 from .views import static
-app.register_blueprint(static)
 from .views.index import index
-app.register_blueprint(index)
 from .views.bot import bot
-app.register_blueprint(bot)
 from .views.datasets import datasets
+
+app.register_blueprint(static)
+app.register_blueprint(index)
+app.register_blueprint(bot)
 app.register_blueprint(datasets)
 # from .util import requests # import dab.util.requests
 

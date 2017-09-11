@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="main">
-	<h1>DataSets</h1>
+	<div class="main">
+		<h1>DataSets</h1>
 
-    <p>List of all datasets and descriptions.</p>
+		<p>List of all datasets and descriptions.</p>
 
-    <ol>
-        {% for d in ds %}
-            <li>{{ d }}</li>
-        {% endfor %}
-    </ol>
+		<ol>
+			{% for d in nt.datasets_files %}
+				<li>{{ d }}</li>
+			{% endfor %}
+		</ol>
 
-</div>
+	</div>
 {% endblock %}
