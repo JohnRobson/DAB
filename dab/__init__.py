@@ -22,12 +22,12 @@ csrf.init_app(app)
 
 from .views import static
 from .views.index import index
-from .views.bot import bot
+from .views.bot import pbbot
 from .views.datasets import datasets
 
 app.register_blueprint(static)
 app.register_blueprint(index)
-app.register_blueprint(bot)
+app.register_blueprint(pbbot)
 app.register_blueprint(datasets)
 # from .util import requests # import dab.util.requests
 
