@@ -19,11 +19,45 @@ class Bot(object):
 	def read(self, filename):
 		self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
 
-	def commands(self):
-		cmd = request.form['command']
-		print('Class:', cmd)
+	def commands(self, cmd):
+		# cmd = request.form['command']
+		cmd = cmd.strip()
+		#cmd = cmd.lower()
+		cmds = cmd.split(" ")
+		print('cmds', cmds)
 
-		# <p><img src="/plot/Newspaper" alt="Image Placeholder"></p>
+		if len(cmds) == 0:
+			return None
+
+		cmd = cmds[0]
+		res = None
+
+		try:
+			if cmd == 'help':
+				res = """HELP: Available commands:<br />
+				load dataset_name - load the dataset.<br />
+				ds info - show the dataset information.<br />
+				plot column_name - plot the dataset column.<br />
+				"""
+
+			if cmd == 'load':
+				self.read(cmds[1])
+				res = """Data Set (Rows, Columns): <code>""" + str(self.df.shape) + """</code>"""
+
+			if cmd == 'ds':
+				if cmds[1] == 'info':
+					res = """Data Set Summary:<pre><code>""" + str(self.df.describe()) + """</code></pre></p>"""
+
+			if cmd == 'plot':
+				res = """<p><img src="/plot/""" + cmds[1] + """" alt="Image Placeholder"></p>"""
+
+		except Exception as e:
+			print('Exception - command:', str(e))
+
+		if res is None:
+			res = 'Sorry, I don\'t understand, type: help'
+
+		return '<strong>&lt;DAV&gt;</strong> ' + res
 
 
 bot = Bot()
@@ -44,8 +78,8 @@ def plot(col):
 
 @pbbot.route('/echo/', methods=['GET'])
 def echo():
-	ret_data = {"value": request.args.get('echoValue')}
-	return jsonify(ret_data)
+	ret = {"value": bot.commands(request.args.get('echoValue'))}
+	return jsonify(ret)
 
 
 @pbbot.route('/bot/', methods=['GET', 'POST'])
@@ -64,8 +98,6 @@ def main(page=1):
 
 	#form = PostForm()
 	#if form.validate_on_submit():
-
-	bot.read('Advertising')
 
 	nt = ntm(rt, error, forml, formf, run, bot.df)
 	return render_template(nt.rt, nt=nt)
