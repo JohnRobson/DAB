@@ -35,9 +35,9 @@ class Bot(object):
 		try:
 			if cmd == 'help':
 				res = """HELP: Available commands:<br />
-				load dataset_name - load the dataset.<br />
-				ds info - show the dataset information.<br />
-				plot column_name - plot the dataset column.<br />
+				<pre>load dataset_name</pre> - load the dataset.<br />
+				<pre>ds info</pre> - show the dataset information.<br />
+				<pre>plot column_name</pre> - plot the dataset column.<br />
 				"""
 
 			if cmd == 'load':

@@ -2,7 +2,12 @@
 {% block content %}
 	<div class="main">
 		<h1>Easy Data Analysis with DAB</h1>
-		<p>The DAB project brings the state-of-the-art in data analysis to everybody since students up to data scientists.
-			Let's start? ;)</p>
+		<p>The DAB project brings the state-of-the-art in data analysis to everybody since students up to data scientists.</p>
+
+		<h2>Let's start? ;)</h2>
+		<p>First go to <a href="{{ url_for('datasets.main') }}">Datasets</a>, where you can see all the available datasets.</p>
+		<p>Then, go to <a href="{{ url_for('pbbot.main') }}">Bot</a> and start chating with <strong>DAV</strong></p>
+
+
 	</div>
 {% endblock %}

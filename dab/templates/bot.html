@@ -19,6 +19,12 @@
 							}
 					});
 			});
+			$("#echoText").keypress(function(e) {
+					 if (e.which == 13) {
+					 	$("#submitBtn").click();
+					 	return false;
+					 }
+			});
 		});
 	</script>
 

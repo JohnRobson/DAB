@@ -105,9 +105,8 @@ code {
 	/* background: hsl(100, 90%, 95%); */
 }
 
-/*
 pre {
-    white-space: pre-wrap;
-    background: hsl(30,80%,90%);
+	white-space: pre-wrap;
+	font-size: 1.5em;
+	/*background: hsl(30,80%,90%);*/
 }
-*/
