@@ -1,49 +1,45 @@
 {% extends "layout.html" %}
 {% block content %}
+<script type=text/javascript>
+	var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
-	<script type=text/javascript>
-  	var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-	</script>
-
-	<script type=text/javascript>
-		$(function() {
-			$("#submitBtn").click(function() {
-					 $.ajax({
-							type: "GET",
-							url: $SCRIPT_ROOT + "/echo/",
-							contentType: "application/json; charset=utf-8",
-							data: { echoValue: $('input[name="echoText"]').val() },
-							success: function(data) {
-									$('#echoResult').text(data.value);
-									$('#echoResults').append(data.value + '<br />');
-							}
-					});
-			});
-			$("#echoText").keypress(function(e) {
-					 if (e.which == 13) {
-					 	$("#submitBtn").click();
-					 	return false;
-					 }
-			});
+	$(function() {
+		$("#submitBtn").click(function() {
+				 $.ajax({
+						type: "GET",
+						url: $SCRIPT_ROOT + "/echo/",
+						contentType: "application/json; charset=utf-8",
+						data: { echoValue: $('input[name="echoText"]').val() },
+						success: function(data) {
+								$('#echoResult').text(data.value);
+								$('#echoResults').append(data.value + '<br />');
+								document.getElementById("echoText").value = "";
+								window.scrollTo(0,document.body.scrollHeight);
+						}
+				});
 		});
-	</script>
+		$("#echoText").keypress(function(e) {
+				 if (e.which == 13) {
+					$("#submitBtn").click();
+					return false;
+				 }
+		});
+	});
+</script>
 
-	<div class="main">
-		<h1>Let's talk, say: help.</h1>
+<div class="main">
+	<h1>Let's talk, say: help.</h1>
 
-		<div>
-			<p><strong><div id='echoResults'></div></strong></p>
-		</div>
+	<div>
+		<p><strong><div id="echoResults"></div></strong></p>
+	</div>
 
-		<div>
-
+	<div>
 		<p><strong>Command:</strong>
 			<input id="echoText" name="echoText" type="text" style="width:70%"/>
 			<button id="submitBtn" name="submitBtn" type="button">Send</button>
 		</p>
-
-
-		</div>
-
 	</div>
+
+</div>
 {% endblock %}
