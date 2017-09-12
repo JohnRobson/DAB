@@ -15,8 +15,9 @@ app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 app.debug = True
 
-csrf = CSRFProtect()
-csrf.init_app(app)
+#csrf = CSRFProtect()
+#csrf.init_app(app)
+app.secret_key = '5accdb11b2c10a78d7c92c5fa102ea77fcd50c2058b00f6e'
 
 ################################## Pages ##################################
 

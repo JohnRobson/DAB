@@ -2,6 +2,10 @@
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- #<html xmlns="http://www.w3.org/1999/xhtml" manifest="{{ url_for('static', filename='manifest.appcache.BKP') }}"># -->
 <head>
+	<meta charset="UTF-8">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{
+  url_for('static', filename='js/jquery.min.js') }}">\x3C/script>')</script>
 	<title>DAB - Data Analysis Bot</title>
 	<meta http-equiv="Cache-Control"
 				content="public, no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0"/>

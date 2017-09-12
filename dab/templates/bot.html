@@ -1,19 +1,49 @@
 {% extends "layout.html" %}
 {% block content %}
+
+	<script type=text/javascript>
+  	var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+	</script>
+
+	<script type=text/javascript>
+		$(function() {
+			$("#submitBtn").click(function() {
+					 $.ajax({
+							type: "GET",
+							url: $SCRIPT_ROOT + "/echo/",
+							contentType: "application/json; charset=utf-8",
+							data: { echoValue: $('input[name="echoText"]').val() },
+							success: function(data) {
+									$('#echoResult').text(data.value);
+									$('#echoResults').append(data.value + '<br />');
+							}
+					});
+			});
+		});
+	</script>
+
 	<div class="main">
-		<h1>Hello...</h1>
+		<h1>Let's talk, say: help.</h1>
 
-		<p>Data Set (Rows, Columns): <code>{{ nt.df.shape }}</code></p>
+		<div>
+			<p>Data Set (Rows, Columns): <code>{{ nt.df.shape }}</code></p>
 
-		<p>Data Set Summary:<pre><code>{{ nt.df.describe() }}</code></pre></p>
+			<p>Data Set Summary:<pre><code>{{ nt.df.describe() }}</code></pre></p>
 
-		<p><img src="{{ url_for('pbbot.plot', col='Newspaper') }}" alt="Image Placeholder"></p>
+			<p><img src="{{ url_for('pbbot.plot', col='Newspaper') }}" alt="Image Placeholder"></p>
 
-		<p><img src="{{ url_for('pbbot.plot', col='TV') }}" alt="Image Placeholder"></p>
+			<p><strong><div id='echoResults'></div></strong></p>
+		</div>
 
-		<p><img src="{{ url_for('pbbot.plot', col='Radio') }}" alt="Image Placeholder"></p>
+		<div>
 
-		<p><img src="{{ url_for('pbbot.plot', col='Sales') }}" alt="Image Placeholder"></p>
+		<p><strong>Command:</strong>
+			<input id="echoText" name="echoText" type="text" style="width:70%"/>
+			<button id="submitBtn" name="submitBtn" type="button">Send</button>
+		</p>
+
+
+		</div>
 
 	</div>
 {% endblock %}
