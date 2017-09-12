@@ -21,15 +21,13 @@ class Bot(object):
 
 	def commands(self, cmd):
 		# cmd = request.form['command']
-		cmd = cmd.strip()
-		#cmd = cmd.lower()
-		cmds = cmd.split(" ")
+		cmds = cmd.strip().split(' ') # .lower()
 		print('cmds', cmds)
 
 		if len(cmds) == 0:
 			return None
 
-		cmd = cmds[0]
+		cmd = cmds[0].lower()
 		res = None
 
 		try:
@@ -42,14 +40,14 @@ class Bot(object):
 
 			if cmd == 'load':
 				self.read(cmds[1])
-				res = """Data Set (Rows, Columns): <code>""" + str(self.df.shape) + """</code>"""
+				res = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
 
 			if cmd == 'ds':
 				if cmds[1] == 'info':
-					res = """Data Set Summary:<pre><code>""" + str(self.df.describe()) + """</code></pre></p>"""
+					res = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
 
 			if cmd == 'plot':
-				res = """<p><img src="/plot/""" + cmds[1] + """" alt="Image Placeholder"></p>"""
+				res = '<p><img src="/plot/' + cmds[1] + '" alt="Image Placeholder"></p>'
 
 		except Exception as e:
 			print('Exception - command:', str(e))
@@ -57,7 +55,7 @@ class Bot(object):
 		if res is None:
 			res = 'Sorry, I don\'t understand, type: help'
 
-		return '<strong>&lt;DAV&gt;</strong> ' + res
+		return '<img src="/static/img/dab.png" height="25"/> ' + res
 
 
 bot = Bot()
@@ -78,7 +76,7 @@ def plot(col):
 
 @pbbot.route('/echo/', methods=['GET'])
 def echo():
-	ret = {"value": bot.commands(request.args.get('echoValue'))}
+	ret = {'value': bot.commands(request.args.get('echoValue'))}
 	return jsonify(ret)
 
 
