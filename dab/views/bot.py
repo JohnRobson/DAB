@@ -1,9 +1,8 @@
 # import time
-from collections import namedtuple
+import os.path
 from io import BytesIO
 import base64
-import matplotlib as mpl
-mpl.use('Agg')
+from collections import namedtuple
 # import numpy as np
 import pandas as pd
 # import matplotlib.pyplot as plt
@@ -20,8 +19,13 @@ class Bot(object):
 		self.df = None
 
 	def read(self, filename):
-		self.df = None
-		self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
+		if os.path.isfile('db/{}.csv'.format(filename)): # check if file exists
+			try:
+				self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
+				return self.df
+			except Exception as e:
+				print('Exception - read dataset:', str(e))
+		return None
 
 	def plot(self, format, col):
 		r""" :type 1 = image, 2 = data"""
@@ -57,9 +61,7 @@ class Bot(object):
 				"""
 
 			if cmd == 'load':
-				self.read(cmds[1]) # read dataset
-				
-				if self.df is not None:
+				if self.read(cmds[1]) is not None:
 					rt = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
 				else:
 					rt = 'Data Set doesn\'t exist.'
@@ -74,7 +76,7 @@ class Bot(object):
 			if cmd == 'plot':
 				data = self.plot(2, cmds[1])
 				if data is not None:
-					rt = '<div class="virtualPlaceholder"><img src="data:image/png;base64,{}" alt="Image Placeholder"></div>'.format(data)
+					rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(data)
 				else:
 					rt = 'Sorry, this column <code>' + cmds[1] + '</code> doesn\'t exist.'
 

@@ -1,0 +1,41 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+John Robson Leite Jasmim <jleiteja@stevens.edu>
+Stevens Institute of Technology
+1 Castle Point Terrace, Hoboken, NJ 07030 - USA
+
+GNU/Linux OpenPGP - http://openpgp.org/software/
+https://pgp.mit.edu/pks/lookup?search=0x02C81E35
+
+KEY: rsa4096/E57F646102C81E35 2015-06-01 [expires: 2018-05-31]
+Fingerprint = 5A5C A4E0 B431 475B FF37  6F9F E57F 6461 02C8 1E35
+
+
+LICENSE
+This paper presents the intellectual content in Program Code and Text Format, licensed under the respective licenses:
+
+AGPLv3 - GNU Affero General Public License, Version 3 or any Later version
+https://www.gnu.org/licenses/agpl-3.0.html
+
+Creative Commons - Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+https://creativecommons.org/licenses/by-sa/4.0/
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GNU/Linux OpenPGP - http://openpgp.org/software/
+Comment: https://pgp.mit.edu/pks/lookup?search=0x02C81E35
+
+iQIzBAEBCAAdFiEEC499u6Fzr69n4Xm7VJzTnhG5VQAFAlm5ZVEACgkQVJzTnhG5
+VQCXqQ/+JAsRERrsBDThDcApd1k49PZlmdGPTlEgtf5ei3E4A8cGmB4IRjIR7A3z
++SpZ9lBz9wXAu2IxhO4N9+vmsnWcSHXzRPn1gQlRWM2OgNQdVyd9yoAIkmMQa/uE
+alv3zjIP7XaM6YUbblwPvz2WMGwR7O8TFJtHlRr+6Nv2nPrkmRqp7nrtcLc14LyD
+MviGqRenRSDkbui0dW0RI5XnBd9bNmkCIizfAqOVQu1RwMkoTEDK5KN/ZYFxZy93
+l5B1yJrXPnF4kRuP9IdHsZ/slZbbvpmIncxD6nig3kNPgSSgSZvEgtf8GZ1lbusg
+z2M2dQ4bBNON0NMv3uVPG1d5k7WF5RSgKKs8BfFjEIntUc/OxxMQX0quNYWW8o9u
+K0ZdJU4B1c1w1h8+ZWnOTTIZCHs2qW9Uih3ECMwyPlHGF9gqAs/Rh1WZtJyZUBTU
+6n6Bi9l394G0MUSzfevNr3nUtF9j65a1Bj0vpxXYEmuTnbkJYXYeRW4xpCLcYPEe
+4Kl78nR54umrrkOmtJT0udHgnMt268gp/EPQscChQLulalUj9uvPHNJPv4rF9QiO
+J+yiDGmVXcVkE6PZ4q4e9nPk7IxE/xxh61qARTvAHVCKl7llhpr/Xebp6bJpFIWR
+5QJJhhx2qDOcuNpx3Jd0gSlRgWF1pMpQdreumn5XkEw2+k2++BU=
+=drN/
+-----END PGP SIGNATURE-----
