@@ -1,6 +1,7 @@
 # import time
 from collections import namedtuple
 from io import BytesIO
+import base64
 # import numpy as np
 import pandas as pd
 # import matplotlib.pyplot as plt
@@ -19,6 +20,20 @@ class Bot(object):
 	def read(self, filename):
 		self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
 
+	def plot(self, format, col):
+		r""" :type 1 = image, 2 = data"""
+		if col in self.df.columns:
+			ploter = bot.df[[col]].plot(figsize=(6, 4), fontsize=10)
+			# fig, ax = plt.subplots(1)
+			fig = ploter.get_figure()
+			img = BytesIO()
+			fig.savefig(img, format='png', dpi=100, transparent=True, edgecolor='k', bbox_inches='tight')  # facecolor='w'
+			img.seek(0)
+			if format == 1: return img
+			if format == 2: return base64.b64encode(img.getvalue()).decode('UTF-8')
+
+		return None
+
 	def commands(self, cmd):
 		# cmd = request.form['command']
 		cmds = cmd.strip().split(' ') # .lower()
@@ -32,10 +47,10 @@ class Bot(object):
 
 		try:
 			if cmd == 'help':
-				res = """HELP: Available commands:<br />
-				<pre>load dataset_name</pre> - load the dataset.<br />
-				<pre>ds info</pre> - show the dataset information.<br />
-				<pre>plot column_name</pre> - plot the dataset column.<br />
+				res = """Available commands:<br />
+				<code>load dataset_name</code> - load the dataset.<br />
+				<code>ds info</code> - show the dataset information.<br />
+				<code>plot column_name</code> - plot the dataset column.<br />
 				"""
 
 			if cmd == 'load':
@@ -47,10 +62,18 @@ class Bot(object):
 					res = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
 
 			if cmd == 'plot':
-				res = '<p><img src="/plot/' + cmds[1] + '" alt="Image Placeholder"></p>'
+				data = bot.plot(2, cmds[1])
+				if data is not None:
+					res = '<div class="virtualPlaceholder"><img src="data:image/png;base64,{}" alt="Image Placeholder"></div>'.format(data)
+				else:
+					res = 'Sorry, this column <code>' + cmds[1] + '</code> doesn\'t exist.'
 
 		except Exception as e:
 			print('Exception - command:', str(e))
+			res = 'Sorry, this command syntax is wrong, check: <code>help</code>'
+
+		finally:
+			pass
 
 		if res is None:
 			res = 'Sorry, I don\'t understand, type: help'
@@ -63,16 +86,10 @@ pbbot = Blueprint('pbbot', __name__)
 
 
 @pbbot.route('/plot/<col>')
-def plot(col):
-	print('CALL PLOT')
-	ploter = bot.df[[col]].plot()
-	# fig, ax = plt.subplots(1)
-	fig = ploter.get_figure()
-	img = BytesIO()
-	fig.savefig(img, format='png', dpi=72, transparent=True)
-	img.seek(0)
-	return send_file(img, mimetype='image/png')
-
+def plot(col): # http://0.0.0.0:5050/plot/Balance
+	img = bot.plot(1, col)
+	if img is not None:
+		return send_file(img, mimetype='image/png')
 
 @pbbot.route('/echo/', methods=['GET'])
 def echo():

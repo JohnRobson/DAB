@@ -11,7 +11,7 @@ from flask_wtf import CSRFProtect
 # import dab.views.decorators
 # from tests.view_decorator import *
 
-app = Flask(__name__)
+app = Flask(__name__) # static_url_path='/static', static_url_path='/static'
 app.config.from_pyfile('config.cfg')
 app.debug = True
 
