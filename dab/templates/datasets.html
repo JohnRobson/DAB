@@ -3,13 +3,15 @@
 	<div class="main">
 		<h1>DataSets</h1>
 
-		<p>List of all datasets and descriptions.</p>
+		<p>List of all available datasets and descriptions.</p>
 
 		<ol>
 			{% for d in nt.datasets_files %}
 				<li>{{ d }}</li>
 			{% endfor %}
 		</ol>
+
+		<p>Go to <a href="{{ url_for('pbbot.main') }}">Bot</a> and start chating with <strong>DAB</strong></p>
 
 	</div>
 {% endblock %}

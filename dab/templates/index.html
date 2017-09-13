@@ -2,12 +2,81 @@
 {% block content %}
 	<div class="main">
 		<h1>Easy Data Analysis with DAB</h1>
-		<p>The DAB project brings the state-of-the-art in data analysis to everybody since students up to data scientists.</p>
 
-		<h2>Let's start? ;)</h2>
+		<p>The DAB project brings the state-of-the-art in data analysis to everybody since students up to data scientists. To Start:</p>
+
 		<p>First go to <a href="{{ url_for('datasets.main') }}">Datasets</a>, where you can see all the available datasets.</p>
-		<p>Then, go to <a href="{{ url_for('pbbot.main') }}">Bot</a> and start chating with <strong>DAV</strong></p>
 
+		<p>Then, go to <a href="{{ url_for('pbbot.main') }}">Bot</a> and start chating with <strong>DAB</strong></p>
+
+		<h1>DAB Goal &amp; Design</h1>
+
+
+		<h2>Slack bots</h2>
+
+		<p><strong>3rd Party</strong>: There are several bots to Slack <a href="https://slack.com/apps/category/At0MQP5BEF-bots" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</p>
+
+		<p><strong>Open Source</strong>: Boots for several platforms <a href="https://github.com/botwiki/open-source-bots" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>, hundred of open source bots <a href="https://botwiki.org/tag/opensource/" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>. Specific for Slack there are 16 open source bots <a href="https://botwiki.org/tag/opensource+slackbot/" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</p>
+
+		<p>How to create a Bot to Slack <a href="https://api.slack.com/bot-users" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</p>
+
+
+		<h2>Team Chat Platform</h2>
+
+		<p>Slack is the more popular one <a href="https://www.slant.co/topics/1359/~team-chat-software" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a> <a href="https://zapier.com/blog/best-team-chat-app/" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>, but there are several others as Discord, HipChat, Flowdock. Also a lot of people use WhatsApp. And also there are the forums like GitHub.</p>
+
+		<p>The most popular Open Source team chat software is Matrix <a href="https://www.slant.co/versus/4553/12764/~slack_vs_matrix" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</p>
+
+		<p><strong>Statsbot</strong>: "Statsbot sends your key financial metrics such as MRR, ARR, active customers, revenue right into your existing Slack channels. You can get these metrics through their web application or the advanced Slack integration". Slatsbot also has a Bot for Slack <a href="https://statsbot.co/slack" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</p>
+
+		<h4>Discus:</h4>
+
+		<ul>
+			<li>Slack is not open source, there are other good competitors. This project should avoid tie with Slack and be open to any chat software (Discord, HipChat, Flowdock, Twist, Microsoft Teams, Flock) and even web (Github, Twitter).</li>
+		</ul>
+
+
+		<h2>Technology</h2>
+
+		<p>There are several technologies specific for each platform (Web, iOS, Android, Windows, Mac, Linux). Most Bots, specially in our case (DAB), the process and calculations must be done on a server and sent to the user. For the server processing, the most recommended language for Data Science is Python and as a delivery platform is recommend the Web Browser (Chrome, Firefox, Safari), in this case using Flask, HTML5, CSS3, JavaScript 6, Bootstrap4, Vue.js</p>
+
+		<h2>Path to Solution</h2>
+
+		<p>Every data scientist wants to solve a specific problem, is very hard to build a "silver bullet" tool to solve any kind of problem, maybe even "solve" something means that 'we can think what the user is looking for'. Maybe the best approach is to build a HELPER & GUIDE tool:</p>
+
+		<ul>
+			<li><strong>Helper</strong>: A "time saver" tool with simple and concise commands to help the user to quickly: get the data, clean, analyse and find a solution approach or at least eliminate non-good approaches.</li>
+			<li><strong>Guide</strong>: There several ways to do Dada Analysis, is important to consider the number of elements, is the data is labeled or not and what the user is looking for. To guide the user this DAB can use a methodology of the "classification of the best technique" suggesting the most recommended model to be applied for each situation, <a href="{{ url_for('static', filename='img/ml_map.png') }}" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>, <a href="{{ url_for('static', filename='img/ml_guide.png') }}" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</li>
+		</ul>
+		<p></p>
+
+
+		<h2>Classification of the Best Technique</h2>
+
+		<p>"Akinator" <a href="http://en.akinator.com/" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a> is a good example, after the user sends the DataSet, DAB will ask some questions like:</p>
+
+		<ol>
+			<li>Do you want to clean your dataset? (this will handle with Wrong, Missing and Repeated values)</li>
+			<li>What kind of prediction do you want to do? (Classification, Regression, Auto, etc)</li>
+		</ol>
+
+		<p>The first question will show the parts of the dataset the seams wrong and the second question will show the Best Results for each predictor with graphics, etc. This part will use Machine Learning to figure out the best calibration for each model.</p>
+
+		<p>So, similar do "Akinator", DAB will Guide the user Step by Step to find the Correct and Best data analysis and get the Result that he is looking for. And for advanced data scientists DAB at least will save their time by automatically testing and eliminating several statistical and machine learning models that do not fit for that data set.</p>
+
+
+		<h2>DAB</h2>
+
+		<p><strong>Register Domain</strong>: The name "DAB" must be registered: <a href="http://www.domainsbot.com/d/dab" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>, <a href="https://iwantmyname.com/search?domain=dab" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>, <a href="https://www.name.com/domain/search/dab" target="_blank"><img src="{{ url_for('static', filename='img/link.png') }}"></a>.</p>
+
+
+		<h2>Artificial Intelligence Markup Language (AIML)</h2>
+
+		<p>AIML, or Artificial Intelligence Markup Language, is an XML dialect for creating natural language software agents.</p>
+
+
+
+		<p></p>
 
 	</div>
 {% endblock %}
