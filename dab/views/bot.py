@@ -34,9 +34,9 @@ class Bot(object):
 
 		return None
 
-	def commands(self, cmd):
+	def commands(self, line):
 		# cmd = request.form['command']
-		cmds = cmd.strip().split(' ') # .lower()
+		cmds = line.strip().split(' ') # .lower()
 		print('cmds', cmds)
 
 		if len(cmds) == 0:
@@ -51,6 +51,7 @@ class Bot(object):
 				<code>load dataset_name</code> - load the dataset.<br />
 				<code>ds info</code> - show the dataset information.<br />
 				<code>plot column_name</code> - plot the dataset column.<br />
+				<code>calc</code> - do a basic arithmetic operation.<br />
 				"""
 
 			if cmd == 'load':
@@ -75,10 +76,14 @@ class Bot(object):
 		finally:
 			pass
 
-		if rt is None:
-			rt = 'Sorry, I don\'t understand, type: help'
+		if cmd == 'calc':
+			rt = str(eval(' '.join(cmds[1:])))
 
-		rt = '<img src="/static/img/dab.png" height="25"/><div class="bubble">' + rt + '</div>'
+		if rt is None:
+			rt = 'Sorry, I don\'t understand what you said, type: <code>help</code>'
+
+		rt = '<img src="/static/img/dab.png" height="25"/>' \
+				 '<div class="bubble"><code>&gt; ' + line + '</code><br /><br />' + rt + '</div>'
 
 		return rt
 

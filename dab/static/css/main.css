@@ -142,7 +142,7 @@ pre {
 	width: 0;
 	z-index: 1;
 	left: -10px;
-	top: 14px;
+	top: 12px;
 }
 
 .bubble:before {
@@ -155,5 +155,5 @@ pre {
 	width: 0;
 	z-index: 0;
 	left: -11px;
-	top: 14px;
+	top: 12px;
 }
