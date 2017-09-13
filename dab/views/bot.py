@@ -20,6 +20,7 @@ class Bot(object):
 		self.df = None
 
 	def read(self, filename):
+		self.df = None
 		self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
 
 	def plot(self, format, col):
@@ -56,7 +57,8 @@ class Bot(object):
 				"""
 
 			if cmd == 'load':
-				self.read(cmds[1])
+				self.read(cmds[1]) # read dataset
+				
 				if self.df is not None:
 					rt = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
 				else:
