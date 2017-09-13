@@ -2,6 +2,8 @@
 from collections import namedtuple
 from io import BytesIO
 import base64
+import matplotlib as mpl
+mpl.use('Agg')
 # import numpy as np
 import pandas as pd
 # import matplotlib.pyplot as plt
@@ -23,7 +25,7 @@ class Bot(object):
 	def plot(self, format, col):
 		r""" :type 1 = image, 2 = data"""
 		if col in self.df.columns:
-			ploter = bot.df[[col]].plot(figsize=(6, 4), fontsize=10)
+			ploter = self.df[[col]].plot(figsize=(6, 4), fontsize=10)
 			# fig, ax = plt.subplots(1)
 			fig = ploter.get_figure()
 			img = BytesIO()
@@ -63,7 +65,7 @@ class Bot(object):
 					rt = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
 
 			if cmd == 'plot':
-				data = bot.plot(2, cmds[1])
+				data = self.plot(2, cmds[1])
 				if data is not None:
 					rt = '<div class="virtualPlaceholder"><img src="data:image/png;base64,{}" alt="Image Placeholder"></div>'.format(data)
 				else:
@@ -92,11 +94,13 @@ bot = Bot()
 pbbot = Blueprint('pbbot', __name__)
 
 
+'''
 @pbbot.route('/plot/<col>')
 def plot(col): # http://0.0.0.0:5050/plot/Balance
 	img = bot.plot(1, col)
 	if img is not None:
 		return send_file(img, mimetype='image/png')
+'''
 
 @pbbot.route('/echo/', methods=['GET'])
 def echo():
@@ -115,8 +119,8 @@ def main(page=1):
 	run = None
 	ntm = namedtuple('ntm', 'rt, error, forml, formf, run, df')
 
-	if request.method == 'POST':
-		bot.commands()
+	#if request.method == 'POST':
+	#	bot.commands()
 
 	#form = PostForm()
 	#if form.validate_on_submit():
