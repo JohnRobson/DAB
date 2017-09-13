@@ -7,7 +7,7 @@ setup(
 	license='AGPLv3',
 	author='John Robson',
 	author_email='jleiteja@stevens.edu',
-	url='https://dab.herokuapp.com/',
+	url='https://dab42.herokuapp.com/',
 	description=('DAB - Data Analysis Bot'),
 	keywords=('data, bot'),
 	long_description='README',
