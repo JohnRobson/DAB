@@ -24,7 +24,7 @@ class Bot(object):
 
 	def plot(self, format, col):
 		r""" :type 1 = image, 2 = data"""
-		if col in self.df.columns:
+		if self.df is not None and col in self.df.columns:
 			ploter = self.df[[col]].plot(figsize=(6, 4), fontsize=10)
 			# fig, ax = plt.subplots(1)
 			fig = ploter.get_figure()
@@ -33,7 +33,6 @@ class Bot(object):
 			img.seek(0)
 			if format == 1: return img
 			if format == 2: return base64.b64encode(img.getvalue()).decode('UTF-8')
-
 		return None
 
 	def commands(self, line):
@@ -58,11 +57,17 @@ class Bot(object):
 
 			if cmd == 'load':
 				self.read(cmds[1])
-				rt = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
+				if self.df is not None:
+					rt = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
+				else:
+					rt = 'Data Set doesn\'t exist.'
 
 			if cmd == 'ds':
 				if cmds[1] == 'info':
-					rt = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
+					if self.df is not None:
+						rt = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
+					else:
+						rt = 'Load some dataset first: <code>load dataset_name</code>'
 
 			if cmd == 'plot':
 				data = self.plot(2, cmds[1])
