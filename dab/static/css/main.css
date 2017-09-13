@@ -17,8 +17,8 @@ header {
 }
 
 header .logo {
-	margin: 5px auto;
-	font-size: 1.7em;
+	margin: 2px auto;
+	font-size: 1.5em;
 	color: #fff;
 	text-transform: uppercase;
 	float: left;
@@ -74,7 +74,7 @@ h3 {
 }
 
 .menu li + li {
-	margin-left: 35px;
+	margin-left: 15px;
 }
 
 .menu li a {
@@ -112,8 +112,48 @@ pre {
 	/*background: hsl(30,80%,90%);*/
 }
 
-.virtualPlaceholder{
+.virtualPlaceholder {
 	display: block;
 	width: 533px;
 	height: 355px;
+}
+
+/* http://www.ilikepixels.co.uk/drop/bubbler/ */
+.bubble {
+	position: relative;
+	margin: -30px 40px -8px 40px;
+	/*width: 90%;*/
+	/*height: 75px;*/
+	padding: 8px;
+	background: #FFFFFF;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border: #FF9F00 solid 1px;
+}
+
+.bubble:after {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 5px 10px 5px 0;
+	border-color: transparent #FFFFFF;
+	display: block;
+	width: 0;
+	z-index: 1;
+	left: -10px;
+	top: 14px;
+}
+
+.bubble:before {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 5px 10px 5px 0;
+	border-color: transparent #FF9F00;
+	display: block;
+	width: 0;
+	z-index: 0;
+	left: -11px;
+	top: 14px;
 }

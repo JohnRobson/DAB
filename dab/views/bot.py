@@ -43,11 +43,11 @@ class Bot(object):
 			return None
 
 		cmd = cmds[0].lower()
-		res = None
+		rt = None
 
 		try:
 			if cmd == 'help':
-				res = """Available commands:<br />
+				rt = """Available commands:<br />
 				<code>load dataset_name</code> - load the dataset.<br />
 				<code>ds info</code> - show the dataset information.<br />
 				<code>plot column_name</code> - plot the dataset column.<br />
@@ -55,30 +55,32 @@ class Bot(object):
 
 			if cmd == 'load':
 				self.read(cmds[1])
-				res = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
+				rt = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
 
 			if cmd == 'ds':
 				if cmds[1] == 'info':
-					res = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
+					rt = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
 
 			if cmd == 'plot':
 				data = bot.plot(2, cmds[1])
 				if data is not None:
-					res = '<div class="virtualPlaceholder"><img src="data:image/png;base64,{}" alt="Image Placeholder"></div>'.format(data)
+					rt = '<div class="virtualPlaceholder"><img src="data:image/png;base64,{}" alt="Image Placeholder"></div>'.format(data)
 				else:
-					res = 'Sorry, this column <code>' + cmds[1] + '</code> doesn\'t exist.'
+					rt = 'Sorry, this column <code>' + cmds[1] + '</code> doesn\'t exist.'
 
 		except Exception as e:
 			print('Exception - command:', str(e))
-			res = 'Sorry, this command syntax is wrong, check: <code>help</code>'
+			rt = 'Sorry, this command syntax is wrong, check: <code>help</code>'
 
 		finally:
 			pass
 
-		if res is None:
-			res = 'Sorry, I don\'t understand, type: help'
+		if rt is None:
+			rt = 'Sorry, I don\'t understand, type: help'
 
-		return '<img src="/static/img/dab.png" height="25"/> ' + res
+		rt = '<img src="/static/img/dab.png" height="25"/><div class="bubble">' + rt + '</div>'
+
+		return rt
 
 
 bot = Bot()
