@@ -16,6 +16,7 @@ class Bot(object):
 	r""" Bot Class """
 
 	def __init__(self):
+		print('INIT CLASS BOT')
 		self.df = pd.DataFrame()
 
 	def read(self, filename):
@@ -40,7 +41,7 @@ class Bot(object):
 		return None
 
 	def commands(self, line):
-		print('DEBUG 1', line)
+		print('DEBUG DF', str(self.df.shape))
 		# cmd = request.form['command']
 		cmds = line.strip().split(' ') # .lower()
 		print('cmds', cmds)
@@ -50,7 +51,6 @@ class Bot(object):
 
 		cmd = cmds[0].lower()
 		rt = None
-		print('DEBUG 2', cmd)
 
 		try:
 			if cmd == 'help':
