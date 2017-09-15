@@ -76,7 +76,8 @@ class Bot(object):
 			if cmd == 'plot':
 				data = self.plot(2, cmds[1])
 				if data is not None:
-					rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(data)
+					#rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(data)
+					rt = '<img src="/plot/{}" width="533" height="355" alt="Image Placeholder">'.format(cmds[1])
 				else:
 					rt = 'Sorry, this column <code>' + cmds[1] + '</code> doesn\'t exist.'
 
@@ -103,13 +104,12 @@ bot = Bot()
 pbbot = Blueprint('pbbot', __name__)
 
 
-'''
 @pbbot.route('/plot/<col>')
 def plot(col): # http://0.0.0.0:5050/plot/Balance
 	img = bot.plot(1, col)
 	if img is not None:
 		return send_file(img, mimetype='image/png')
-'''
+
 
 @pbbot.route('/echo/', methods=['GET'])
 def echo():
