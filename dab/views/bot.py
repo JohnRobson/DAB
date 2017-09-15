@@ -25,7 +25,7 @@ class Bot(object):
 			print('DEBUG READ 2')
 			try:
 				self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
-				print('DEBUG READ 2', self.df.size)
+				print('DEBUG READ 3', self.df.size)
 			except Exception as e:
 				print('Exception - read dataset:', str(e))
 		return None
@@ -44,7 +44,7 @@ class Bot(object):
 		return None
 
 	def commands(self, line):
-		print('DEBUG DF', str(self.df.shape))
+		print('DEBUG COMMANDS', str(self.df.shape))
 		# cmd = request.form['command']
 		cmds = line.strip().split(' ') # .lower()
 		print('cmds', cmds)
@@ -81,14 +81,13 @@ class Bot(object):
 			if cmd == 'plot':
 				col = cmds[1] # column to plot
 				print('DEBUG PLOT 0')
-				#data = self.plot(1, col)
-				print('DEBUG PLOT 1')
 				if not self.df.empty and col in self.df.columns:
-					#rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(data)
-					rt = '<img src="/bot/plot/{}" width="533" height="355" alt="Image Placeholder">'.format(col)
-					print('DEBUG PLOT 2', rt)
+					#rt = '<img src="/bot/plot1/{}" width="533" height="355" alt="Image Placeholder">'.format(col)
+					rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(
+						self.plot(2, col))
+					#print('DEBUG PLOT 1', rt)
 				else:
-					print('DEBUG PLOT 3')
+					print('DEBUG PLOT 2')
 					rt = 'Sorry, this column <code>' + col + '</code> doesn\'t exist.'
 
 		except Exception as e:
@@ -114,11 +113,19 @@ bot = Bot()
 pbbot = Blueprint('pbbot', __name__)
 
 
-@pbbot.route('/bot/plot/<col>')
+@pbbot.route('/bot/plot1/<col>')
 def plot(col): # http://0.0.0.0:5050/bot/plot/Balance
 	img = bot.plot(1, col)
 	if img is not None:
 		return send_file(img, mimetype='image/png')
+
+'''
+@pbbot.route('/bot/plot2/<col>')
+def plot(col): # http://0.0.0.0:5050/bot/plot/Balance
+	img = bot.plot(2, col)
+	if img is not None:
+		return send_file(img, mimetype='image/png')
+'''
 
 
 @pbbot.route('/echo/', methods=['GET'])
