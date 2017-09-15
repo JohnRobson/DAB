@@ -20,9 +20,12 @@ class Bot(object):
 		self.df = pd.DataFrame()
 
 	def read(self, filename):
+		print('DEBUG READ 1')
 		if os.path.isfile('db/{}.csv'.format(filename)): # check if file exists
+			print('DEBUG READ 2')
 			try:
 				self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
+				print('DEBUG READ 2', self.df.size)
 			except Exception as e:
 				print('Exception - read dataset:', str(e))
 		return None
@@ -76,12 +79,17 @@ class Bot(object):
 						rt = 'Load some dataset first: <code>load dataset_name</code>'
 
 			if cmd == 'plot':
-				data = self.plot(2, cmds[1])
-				if data is not None:
+				col = cmds[1] # column to plot
+				print('DEBUG PLOT 0')
+				#data = self.plot(1, col)
+				print('DEBUG PLOT 1')
+				if not self.df.empty and col in self.df.columns:
+					print('DEBUG PLOT 2')
 					#rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(data)
-					rt = '<img src="/plot/{}" width="533" height="355" alt="Image Placeholder">'.format(cmds[1])
+					rt = '<img src="/plot/{}" width="533" height="355" alt="Image Placeholder">'.format(col)
 				else:
-					rt = 'Sorry, this column <code>' + cmds[1] + '</code> doesn\'t exist.'
+					print('DEBUG PLOT 3')
+					rt = 'Sorry, this column <code>' + col + '</code> doesn\'t exist.'
 
 		except Exception as e:
 			print('Exception - command:', str(e))
