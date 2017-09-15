@@ -16,20 +16,19 @@ class Bot(object):
 	r""" Bot Class """
 
 	def __init__(self):
-		self.df = None
+		self.df = pd.DataFrame()
 
 	def read(self, filename):
 		if os.path.isfile('db/{}.csv'.format(filename)): # check if file exists
 			try:
 				self.df = pd.read_csv('db/{}.csv'.format(filename))  # read dataset file
-				return self.df
 			except Exception as e:
 				print('Exception - read dataset:', str(e))
 		return None
 
 	def plot(self, format, col):
 		r""" :type 1 = image, 2 = data"""
-		if self.df is not None and col in self.df.columns:
+		if not self.df.empty and col in self.df.columns:
 			ploter = self.df[[col]].plot(figsize=(6, 4), fontsize=10)
 			# fig, ax = plt.subplots(1)
 			fig = ploter.get_figure()
@@ -41,6 +40,7 @@ class Bot(object):
 		return None
 
 	def commands(self, line):
+		print('DEBUG 1', line)
 		# cmd = request.form['command']
 		cmds = line.strip().split(' ') # .lower()
 		print('cmds', cmds)
@@ -50,6 +50,7 @@ class Bot(object):
 
 		cmd = cmds[0].lower()
 		rt = None
+		print('DEBUG 2', cmd)
 
 		try:
 			if cmd == 'help':
@@ -61,14 +62,15 @@ class Bot(object):
 				"""
 
 			if cmd == 'load':
-				if self.read(cmds[1]) is not None:
+				self.read(cmds[1])
+				if not self.df.empty:
 					rt = 'Data Set (Rows, Columns): <code>' + str(self.df.shape) + '</code>'
 				else:
 					rt = 'Data Set doesn\'t exist.'
 
 			if cmd == 'ds':
 				if cmds[1] == 'info':
-					if self.df is not None:
+					if not self.df.empty:
 						rt = 'Data Set Summary:<pre><code>' + str(self.df.describe()) + '</code></pre></p>'
 					else:
 						rt = 'Load some dataset first: <code>load dataset_name</code>'
