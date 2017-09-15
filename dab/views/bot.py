@@ -84,9 +84,9 @@ class Bot(object):
 				#data = self.plot(1, col)
 				print('DEBUG PLOT 1')
 				if not self.df.empty and col in self.df.columns:
-					print('DEBUG PLOT 2')
 					#rt = '<img src="data:image/png;base64,{}" width="533" height="355" alt="Image Placeholder">'.format(data)
-					rt = '<img src="/plot/{}" width="533" height="355" alt="Image Placeholder">'.format(col)
+					rt = '<img src="/bot/plot/{}" width="533" height="355" alt="Image Placeholder">'.format(col)
+					print('DEBUG PLOT 2', rt)
 				else:
 					print('DEBUG PLOT 3')
 					rt = 'Sorry, this column <code>' + col + '</code> doesn\'t exist.'
@@ -114,8 +114,8 @@ bot = Bot()
 pbbot = Blueprint('pbbot', __name__)
 
 
-@pbbot.route('/plot/<col>')
-def plot(col): # http://0.0.0.0:5050/plot/Balance
+@pbbot.route('/bot/plot/<col>')
+def plot(col): # http://0.0.0.0:5050/bot/plot/Balance
 	img = bot.plot(1, col)
 	if img is not None:
 		return send_file(img, mimetype='image/png')
